@@ -14,8 +14,8 @@
 	<h1>FULL-STACK FILMS, INC.</h1>
 	<h2>Search by Film ID</h2>
 	<form action="showFilm.do" method="POST">
-		<input type="number" name="filmId"> <br>
-		<pre>     <button>Get Film</button></pre>
+		<input type="text" name="filmId"> <br>
+ 		<pre>     <button>Get Film</button></pre>
 	</form>
 
 	<c:if test="${not empty film }">
@@ -29,8 +29,8 @@
 	</form>
 
 	<h2>Add a New Film</h2>
-	<form action="createFilm.do" method="POST">
-		<pre>  <button>Create New Film</button></pre>
-	</form>
+		<a href="createFilm.jsp"> 
+		<pre>  <button>Create New Film</button></pre></a>
+
 </body>
 </html>
