@@ -11,7 +11,7 @@
 <body>
 	<c:choose>
 
-		<c:when test="$not empty film">
+		<c:when test="${not empty film }">
 			<h2>${film.title }</h2>
 			${film.description }
          </c:when>
