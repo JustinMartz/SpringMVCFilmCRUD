@@ -34,9 +34,9 @@ public class FilmController {
 		return mv;
 		
 	}
-<<<<<<< HEAD
+
 // STUFF ADDED BY NON-REPO OWNER
-=======
-	// stuff added by repo owner
->>>>>>> 7fa3aaff2fd141c7fb33515c4a5b7cf54a8c6ddb
+
+// stuff added by repo owner
+
 }
