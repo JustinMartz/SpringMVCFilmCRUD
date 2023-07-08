@@ -10,16 +10,25 @@
 </head>
 <body>
 	<c:choose>
-
 		<c:when test="${not empty film }">
 			<h2>${film.title }</h2>
 			${film.description }
-         </c:when>
-		<c:otherwise>
-			<script></script>
-		</c:otherwise>
-	</c:choose>
+			<br>
+			<br>
+			
+		<form action="editFilm" method="POST">
+				<button>Edit Film Data</button>
+			</form>
+			<br>
+			<form action="deleteFilm" method="POST">
+				<button>Delete Film</button>
+			</form>
 
+		</c:when>
+	</c:choose>
+<br>
+<br>
+<a href="home.do"> Return to the Search Page</a>
 
 </body>
 </html>
