@@ -26,10 +26,19 @@ public class FilmController {
 	
 	@RequestMapping(path = "showFilm.do", method = RequestMethod.POST)
 	public ModelAndView showFilm(Integer filmId) throws SQLException {
-		ModelAndView mv = new ModelAndView("WEB-INF/home.jsp");
-		System.out.println("***** FilmId: " +filmId);
+		ModelAndView mv = new ModelAndView("WEB-INF/viewFilm.jsp");
+		System.out.println("***** FilmId: " +filmId); // debug
 		Film film = filmDAO.findFilmById(filmId);
-		System.out.println("**** Film: " + film);
+		
+		if (film == null) {
+			mv.setViewName("WEB-INF/error.jsp");
+			Film dummyFilm = new Film();
+			dummyFilm.setId(filmId);
+			mv.addObject(dummyFilm);
+			return mv;
+		}
+		
+		System.out.println("**** Film: " + film);  // debug
 		mv.addObject("film", film);
 		return mv;
 		

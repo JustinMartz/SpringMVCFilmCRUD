@@ -1,5 +1,9 @@
 package com.skilldistillery.film.data;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -11,7 +15,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=US/Mountain";
 	private static final String user = "student";
 	private static final String pass = "student";
-	
+
 	static {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -22,8 +26,35 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 	@Override
 	public Film findFilmById(int filmId) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Film film = null;
+		String sql = "SELECT * FROM film WHERE id = ?";
+		Connection conn = DriverManager.getConnection(URL, user, pass);
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		prepStmt.setInt(1, filmId);
+		ResultSet filmResult = prepStmt.executeQuery();
+
+		if (filmResult.next()) {
+			film = new Film();
+
+			film.setId(filmResult.getInt("id"));
+			film.setTitle(filmResult.getString("title"));
+			film.setDescription(filmResult.getString("description"));
+			film.setReleaseYear(filmResult.getShort("release_year"));
+			film.setLanguageId(filmResult.getInt("language_id"));
+			film.setRentalDuration(filmResult.getInt("rental_duration"));
+			film.setRentalRate(filmResult.getDouble("rental_rate"));
+			film.setLength(filmResult.getInt("length"));
+			film.setReplacementCost(filmResult.getDouble("replacement_cost"));
+			film.setRating(filmResult.getString("rating"));
+			film.setSpecialFeatures(filmResult.getString("special_features"));
+			film.setLanguageName(findLanguageByFilmId(filmResult.getInt("id")));
+			film.setCast(findActorsByFilmId(filmId));
+		}
+
+		filmResult.close();
+		prepStmt.close();
+		conn.close();
+		return film;
 	}
 
 	@Override
