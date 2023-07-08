@@ -59,7 +59,9 @@ public class FilmController {
 		film.setRating(rating);
 		film.setSpecialFeatures(specialFeatures);
 		
-		
+		// add to database
+		// filmDAO.createFilm(film);
+		// set film id
 		
 		mv.addObject(film);		
 		
