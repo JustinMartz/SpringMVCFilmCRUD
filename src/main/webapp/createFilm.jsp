@@ -50,7 +50,7 @@
 		<label for="specialFeatures">Behind the Scenes</label> -->
 		
 		
-		<pre>     <button>Get Film</button></pre>
+		<pre>     <button>Create Film Entry</button></pre>
 	</form>
 </body>
 </html>

@@ -60,7 +60,7 @@ public class FilmController {
 		film.setSpecialFeatures(specialFeatures);
 		
 		// add to database
-		// filmDAO.createFilm(film);
+		 filmDAO.createFilm(film);
 		// set film id
 		
 		mv.addObject(film);		
