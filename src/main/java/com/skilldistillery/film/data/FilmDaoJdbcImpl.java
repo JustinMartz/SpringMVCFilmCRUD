@@ -51,6 +51,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			film.setSpecialFeatures(filmResult.getString("special_features"));
 			film.setLanguageName(findLanguageByFilmId(filmResult.getInt("id")));
 			film.setCast(findActorsByFilmId(filmId));
+			film.setGenre(findGenre(filmId));
 		}
 
 		filmResult.close();
@@ -79,8 +80,31 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 	@Override
 	public List<Actor> findActorsByFilmId(int filmId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Actor> actors = new ArrayList<>();
+
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			String sql = "SELECT * FROM actor JOIN film_actor "
+					+ "ON film_actor.actor_id = actor.id JOIN film ON film_actor.film_id = film.id WHERE film.id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				String firstName = rs.getString("actor.first_name");
+				String lastName = rs.getString("actor.last_name");
+				int id = rs.getInt("actor.id");
+				Actor actor = new Actor(id, firstName, lastName);
+				actors.add(actor);
+			}
+
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return actors;
 	}
 
 	@Override
@@ -268,7 +292,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 					filmMatch.setRating(searchResult.getString("rating"));
 					filmMatch.setSpecialFeatures(searchResult.getString("special_features"));
 //					filmMatch.setLanguageName(findLanguageByFilmId(searchResult.getInt("id")));
-//					filmMatch.setCast(findActorsByFilmId(filmMatch.getId()));
+					filmMatch.setCast(findActorsByFilmId(filmMatch.getId()));
+					filmMatch.setGenre(findGenre(filmMatch.getId()));
 
 					filmsMatchingKeyword.add(filmMatch);
 				} while (searchResult.next());
@@ -281,10 +306,43 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		} catch (SQLException e) {
 			System.err.println(e);
 		} finally {
-			
+
 		}
 
 		return null;
 	}
+
+	private String findGenre(int filmId) {
+		String genre;
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			String sql = "SELECT category.name FROM category JOIN film_category ON category.id = "
+					+ "film_category.category_id JOIN film ON film.id = film_category.film_id WHERE " + "film.id=?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				genre = rs.getString("category.name");
+				return genre;
+			}
+
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
+	/*
+	 * SELECT category.name FROM category JOIN film_category ON category.id =
+	 * film_category.category_id JOIN film ON film.id = film_category.film_id WHERE
+	 * film.id=4
+	 * 
+	 * 
+	 */
 
 }

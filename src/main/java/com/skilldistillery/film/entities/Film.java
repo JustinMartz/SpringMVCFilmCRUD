@@ -19,6 +19,15 @@ public class Film {
 	private String specialFeatures;
 	private Language language;
 	private List<Actor> cast;
+	private String genre;
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
 
 	public Film() {
 
@@ -157,8 +166,8 @@ public class Film {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cast, description, id, language, languageId, length, rating, releaseYear, rentalDuration,
-				rentalRate, replacementCost, specialFeatures, title);
+		return Objects.hash(cast, description, genre, id, language, languageId, length, rating, releaseYear,
+				rentalDuration, rentalRate, replacementCost, specialFeatures, title);
 	}
 
 	@Override
@@ -170,13 +179,15 @@ public class Film {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
-		return Objects.equals(cast, other.cast) && Objects.equals(description, other.description) && id == other.id
-				&& Objects.equals(language, other.language) && languageId == other.languageId && length == other.length
-				&& Objects.equals(rating, other.rating) && releaseYear == other.releaseYear
-				&& rentalDuration == other.rentalDuration
+		return Objects.equals(cast, other.cast) && Objects.equals(description, other.description)
+				&& Objects.equals(genre, other.genre) && id == other.id && Objects.equals(language, other.language)
+				&& languageId == other.languageId && length == other.length && Objects.equals(rating, other.rating)
+				&& releaseYear == other.releaseYear && rentalDuration == other.rentalDuration
 				&& Double.doubleToLongBits(rentalRate) == Double.doubleToLongBits(other.rentalRate)
 				&& Double.doubleToLongBits(replacementCost) == Double.doubleToLongBits(other.replacementCost)
 				&& Objects.equals(specialFeatures, other.specialFeatures) && Objects.equals(title, other.title);
 	}
+
+	
 
 }
