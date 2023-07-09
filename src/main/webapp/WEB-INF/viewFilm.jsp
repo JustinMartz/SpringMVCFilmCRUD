@@ -42,24 +42,28 @@ span {
 			<span>Special features: </span>${film.specialFeatures }
 			<br>
 
-			<form action="editFilm" method="POST">
-				<button>Edit Film Data</button>
-			</form>
 			<br>
-			<form action="deleteFilm.do" name="yourButton" value="${film.id }"
-				method="POST">
-				<input type="text" name="filmId">
-				<button>Enter film ID to delete film</button>
+			<form action="deleteFilm.do" method="POST">
+		   	<input type="hidden" name="filmId" value="${film.id }">
+				<button>Delete Film</button>
 
 			</form>
 			<br>
 
-				<c:set var="filmId" value="${film.id}" />
-			<form action="editFilm.do" method="POST" >
-			<input type="hidden" name="filmId" value="${film.id }">
+			<c:set var="filmId" value="${film.id}" />
+	<!-- 		<form action="editFilm.do" method="POST">
 				<button>Enter film ID to edit film</button>
-			</form>
-
+			</form> -->
+			<form action="editFilm.do" method="POST">
+					Edit Title: <input type="text" id="title" name="title" size="15">
+					<br> 
+					Edit Description: <input type="text" id="description" name="description" size="25"> <br> 
+					Edit Release Year: <input type="text" id="releaseYear" name="releaseYear"> <br>
+					Edit Language: <input type="text" id="languageId" name="languageId" size="25"><br>
+				<form action="editFilm" method="POST">
+				<input type="hidden" name="filmId" value="${film.id }">
+					<button>Edit Film Data</button>
+				</form>
 		</c:when>
 	</c:choose>
 	<br>
