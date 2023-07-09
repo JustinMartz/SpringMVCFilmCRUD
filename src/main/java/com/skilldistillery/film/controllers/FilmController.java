@@ -98,13 +98,80 @@ public class FilmController {
 		}
 
 	}
-	
-	@RequestMapping(path="editFilm.do", method=RequestMethod.POST)
-	public String editFilm(@RequestParam("filmId") int filmId, Model model) {
-		
-		
-		model.addAttribute("headline", "Success!");
-		model.addAttribute("message", "Film ID " + filmId + " successfully updated!");
+
+	@RequestMapping(path = "editFilm.do", method = RequestMethod.POST)
+	public String editFilm(@RequestParam("filmId") int filmId, String title, String description,
+			@RequestParam("releaseYear") int releaseYear, @RequestParam("languageId") int languageId,
+			@RequestParam("rentalDuration") int rentalDuration, @RequestParam("rentalRate") double rentalRate,
+			@RequestParam("length") int length, @RequestParam("replacementCost") double replacementCost, String rating,
+			String specialFeatures, Model model) {
+		// build new film object with params from editFilm()
+		Film film = new Film();
+
+		film.setId(filmId);
+		film.setTitle(title);
+		film.setDescription(description);
+		film.setReleaseYear(releaseYear);
+		film.setLanguageId(languageId);
+		film.setRentalDuration(rentalDuration);
+		film.setRentalRate(rentalRate);
+		film.setLength(length);
+		film.setReplacementCost(replacementCost);
+		film.setRating(rating);
+		film.setSpecialFeatures(specialFeatures);
+
+		if (filmDAO.editFilm(film)) {
+			//debug
+			System.out.println("************** in this part ************");
+			model.addAttribute("headline", "Success!");
+			model.addAttribute("message", film.getTitle() + " successfully updated.");
+			return "displayMessage.jsp";
+
+		}
+
+		model.addAttribute("headline", "Catastrophic Failure!");
+		model.addAttribute("message", "Film unable to be updated. Who do you think you are?");
 		return "displayMessage.jsp";
+		// editFilm(film);
+		// debug - return ModelAndView so we can view results immediately from
+		// viewFilm.jsp
+		// - will actually use Model model and return string to display error/success
+
+//		try {
+//			film = filmDAO.findFilmById(filmId);
+//			
+//		} catch (SQLException e) {
+//			System.err.println(e);
+//			model.addAttribute("headline", "Failure!");
+//			model.addAttribute("message", "Problem pulling film id: " + filmId + " from database.");
+//			return "displayMessage.jsp";
+//		}
+//		// build new film object using parameter filmId for film.setId(filmId)
+//		if (film == null) {
+//			// display error
+//		}
+
+		// findFilmById(filmId);
+
+		// send film to filmDAO.editFilm()
+//		try {
+//			film = filmDAO.findFilmById(filmId);
+//			if (filmDAO.editFilm(film)) {
+//				model.addAttribute("headline", "Success!");
+//				model.addAttribute("message", film.getTitle() + " successfully updated.");
+//				return "displayMessage.jsp";
+//			} else {
+//				model.addAttribute("headline", "Failure!");
+//				model.addAttribute("message", "Film unable to be updated. Who do you think you are?");
+//				return "displayMessage.jsp";
+//			}
+//
+//		} catch (SQLException e) {
+//			System.err.println(e);
+//			model.addAttribute("headline", "Failure!");
+//			model.addAttribute("message", "Film unsuccessfully updated.");
+//			return "displayMessage.jsp";
+//
+//		}
 	}
 }

@@ -50,7 +50,6 @@ span {
 			</form>
 			<br>
 
-			<c:set var="filmId" value="${film.id}" />
 	<!-- 		<form action="editFilm.do" method="POST">
 				<button>Enter film ID to edit film</button>
 			</form> -->
