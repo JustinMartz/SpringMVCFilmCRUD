@@ -98,4 +98,13 @@ public class FilmController {
 		}
 
 	}
+	
+	@RequestMapping(path="editFilm.do", method=RequestMethod.POST)
+	public String editFilm(@RequestParam("filmId") int filmId, Model model) {
+		
+		
+		model.addAttribute("headline", "Success!");
+		model.addAttribute("message", "Film ID " + filmId + " successfully updated!");
+		return "displayMessage.jsp";
+	}
 }
