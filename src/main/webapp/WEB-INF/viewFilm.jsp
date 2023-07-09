@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,8 @@ span {
 			<br>
 			<span>Running time: </span>${film.length } minutes
 			<br>
-			<span>Replacement cost: </span><fmt:formatNumber value="${film.replacementCost}" type="currency" />
+			<span>Replacement cost: </span>
+			<fmt:formatNumber value="${film.replacementCost}" type="currency" />
 			<br>
 			<span>Rated: </span>${film.rating }
 			<br>
@@ -45,9 +46,17 @@ span {
 				<button>Edit Film Data</button>
 			</form>
 			<br>
-			<form action="deleteFilm.do" name="yourButton" value="${film.id }" method="POST">
-			<input type="text" name="filmId">
+			<form action="deleteFilm.do" name="yourButton" value="${film.id }"
+				method="POST">
+				<input type="text" name="filmId">
 				<button>Enter film ID to delete film</button>
+			</form>
+			<br>
+
+				<c:set var="filmId" value="${film.id}" />
+			<form action="editFilm.do" method="POST" >
+			<input type="hidden" name="filmId" value="${film.id }">
+				<button>Enter film ID to edit film</button>
 			</form>
 
 		</c:when>
