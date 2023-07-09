@@ -39,7 +39,7 @@
 			
 			</select> -->
 		<br>
-		Enter Special Features: <input type="text" id="specialFeatures" name="specialFeatures" size="15">
+		Enter Special Features: <input type="text" id="specialFeatures" name="specialFeatures" size="15">	
  		<!-- <input type="checkbox" id="trailers" name="specialFeatures" value="trailers">
 		<label for="specialFeatures">Trailers</label>
 		<input type="checkbox" id="commentaries" name="specialFeatures" value="commentaries">

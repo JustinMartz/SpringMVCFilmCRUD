@@ -150,7 +150,9 @@ public class Film {
 		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
 				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
 				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
-				+ ", specialFeatures=" + specialFeatures + ", languageName=" + language + ", cast=" + cast + "]";
+				+ ", specialFeatures=" + specialFeatures;
+//						+ "languageName=" + language + ", cast=" + cast + "]";
+		// I had to comment the code above to get the runtime error to go away when running the add film feature. 
 	}
 
 	@Override

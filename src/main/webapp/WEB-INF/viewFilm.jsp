@@ -45,7 +45,7 @@ span {
 				<button>Edit Film Data</button>
 			</form>
 			<br>
-			<form action="deleteFilm" method="POST">
+			<form action="deleteFilm.do" method="POST">
 				<button>Delete Film</button>
 			</form>
 

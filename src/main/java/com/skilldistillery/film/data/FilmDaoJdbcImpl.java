@@ -37,7 +37,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		if (filmResult.next()) {
 			film = new Film();
 
-			film.setId(filmResult.getInt("id"));
+//			film.setId(filmResult.getInt("id"));
 			film.setTitle(filmResult.getString("title"));
 			film.setDescription(filmResult.getString("description"));
 			film.setReleaseYear(filmResult.getShort("release_year"));
