@@ -55,11 +55,16 @@ span {
 				<button>Enter film ID to edit film</button>
 			</form> -->
 			<form action="editFilm.do" method="POST">
-					Edit Title: <input type="text" id="title" name="title" size="15">
-					<br> 
-					Edit Description: <input type="text" id="description" name="description" size="25"> <br> 
-					Edit Release Year: <input type="text" id="releaseYear" name="releaseYear"> <br>
-					Edit Language: <input type="text" id="languageId" name="languageId" size="25"><br>
+					Edit Title: <input type="text" id="title" name="title" size="15" value="${film.title}"><br> 
+					Edit Description: <input type="text" id="description" name="description" size="25" value="${film.description}"> <br> 
+					Edit Release Year: <input type="text" id="releaseYear" name="releaseYear" value="${film.releaseYear}"> <br>
+					Edit Language: <input type="text" id="languageId" name="languageId" size="25" value="${film.languageId}"><br>
+					Enter Rental Duration: <input type="text" id="rentalDuration" name="rentalDuration" size="15" value="${film.rentalDuration}"> 
+					Enter Rental Rate: <input type="text" id="rentalRate" name="rentalRate" size="10" value="${film.rentalRate}"> <br>
+					Enter Running Time: <input type="text" id="length" name="length" size="10" value="${film.length}">  
+					Enter Replacement Cost: <input type="text" id="replacementCost" name="replacementCost" size="10" value="${film.replacementCost}"> <br>
+					Enter Rating: <input type="text" id="rating" name="rating" size="10" value="${film.rating}">
+					Enter Special Features: <input type="text" id="specialFeatures" name="specialFeatures" value="${film.specialFeatures}">
 				<form action="editFilm" method="POST">
 				<input type="hidden" name="filmId" value="${film.id }">
 					<button>Edit Film Data</button>
