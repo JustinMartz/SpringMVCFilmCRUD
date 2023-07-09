@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.skilldistillery.film.entities.Actor;
@@ -234,6 +235,56 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		}
 		return true;
 
+	}
+
+	public List<Film> keywordSearch(String keyword) {
+		Film filmMatch = null;
+		List<Film> filmsMatchingKeyword = new ArrayList<>();
+
+		String query = "SELECT * FROM film WHERE film.title LIKE ? OR film.description LIKE ?";
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			PreparedStatement prepStmt = conn.prepareStatement(query);
+			prepStmt.setString(1, "%" + keyword + "%");
+			prepStmt.setString(2, "%" + keyword + "%");
+			ResultSet searchResult = prepStmt.executeQuery();
+
+			if (searchResult.next() == false) {
+				System.out.println("\n*** Could not find \"" + keyword + "\" in any movie title or description ***\n");
+				return null;
+			} else {
+				do {
+					filmMatch = new Film();
+
+					filmMatch.setId(searchResult.getInt("id"));
+					filmMatch.setTitle(searchResult.getString("title"));
+					filmMatch.setDescription(searchResult.getString("description"));
+					filmMatch.setReleaseYear(searchResult.getShort("release_year"));
+					filmMatch.setLanguageId(searchResult.getInt("language_id"));
+					filmMatch.setRentalDuration(searchResult.getInt("rental_duration"));
+					filmMatch.setRentalRate(searchResult.getDouble("rental_rate"));
+					filmMatch.setLength(searchResult.getInt("length"));
+					filmMatch.setReplacementCost(searchResult.getDouble("replacement_cost"));
+					filmMatch.setRating(searchResult.getString("rating"));
+					filmMatch.setSpecialFeatures(searchResult.getString("special_features"));
+//					filmMatch.setLanguageName(findLanguageByFilmId(searchResult.getInt("id")));
+//					filmMatch.setCast(findActorsByFilmId(filmMatch.getId()));
+
+					filmsMatchingKeyword.add(filmMatch);
+				} while (searchResult.next());
+
+			}
+			searchResult.close();
+			prepStmt.close();
+			conn.close();
+			return filmsMatchingKeyword;
+		} catch (SQLException e) {
+			System.err.println(e);
+		} finally {
+			
+		}
+
+		return null;
 	}
 
 }

@@ -31,5 +31,7 @@ public interface FilmDAO {
 	public boolean deleteFilm(Film film);
 	
 	public boolean editFilm(Film film);
+	
+	public List<Film> keywordSearch(String keyword);
 
 }
