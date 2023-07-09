@@ -45,8 +45,6 @@ span {
 				<button>Edit Film Data</button>
 			</form>
 			<br>
-			<form action="deleteFilm.do" method="POST">
-				<button>Delete Film</button>
 			<form action="deleteFilm.do" name="yourButton" value="${film.id }" method="POST">
 			<input type="text" name="filmId">
 				<button>Enter film ID to delete film</button>
