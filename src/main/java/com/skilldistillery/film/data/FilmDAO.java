@@ -27,5 +27,7 @@ public interface FilmDAO {
 	public boolean deleteActor(Actor actor);
 	
 	public Film createFilm(Film film);
+	
+	public boolean deleteFilm(Film film);
 
 }
