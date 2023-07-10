@@ -7,50 +7,54 @@
 <title>Edit Film Data</title>
 </head>
 <body>
-	<h2>Enter the information below to create a film: </h2>
-	<form action="createFilm.do" method="POST">
-		Edit Title: <input type="text" id="title" name="title" size="15" value="Pre-populated film title"> 
-		Edit Description: <input type="text" id="description" name="description" size="25" value="Change me"> <br>
-		Enter Release Year: <input type="text" id="releaseYear" name="releaseYear"> <br>
-		Enter Language: <input type="text" id="languageId" name="languageId" size="25">
-	<!-- 	<label for="languageId">Select Language: </label>
-			<select name="languageId" id="languageId">
-			<option value="English" selected> English </option>
-			<option value="Italian">Italian</option>
-			<option value="Japanese"> Japanese </option>
-			<option value="Mandrin"> Mandarin </option>
-			<option value="French"> French </option>
-			<option value="German"> German </option>
-			 </select>-->
-			
-			<br>
-		Enter Rental Duration: <input type="text" id="rentalDuration" name="rentalDuration" size="15"> 
-		Enter Rental Rate: <input type="text" id="rentalRate" name="rentalRate" size="10"> <br>
-		Enter Running Time: <input type="text" id="length" name="length" size="10"> 
-		Enter Replacement Cost: <input type="text" id="replacementCost" name="replacementCost" size="10"> <br>
-		Enter Rating: <input type="text" id="rating" name="rating" size="10">
-		<!-- <label for="rating">Select Rating: </label>
-			<select name="rating" id="rating">
-			<option value="g" selected> G </option>
-			<option value="pg">PG</option>
-			<option value="pg13"> PG-13</option>
-			<option value="r"> R </option>
-			<option value="nc17"> NC-17</option>
-			
-			</select> -->
-		<br>
-		Enter Special Features: <input type="text" id="specialFeatures" name="specialFeatures" size="15">
- 		<!-- <input type="checkbox" id="trailers" name="specialFeatures" value="trailers">
-		<label for="specialFeatures">Trailers</label>
-		<input type="checkbox" id="commentaries" name="specialFeatures" value="commentaries">
-		<label for="specialFeatures">Commentaries</label>
-		<input type="checkbox" id="deletedScenes" name="specialFeatures" value="deletedScenes">
-		<label for="specialFeatures">Deleted Scenes</label>
-		<input type="checkbox" id="behindTheScenes" name="specialFeatures" value="behindTheScenes">
-		<label for="specialFeatures">Behind the Scenes</label> -->
-		
-		
-		<pre>     <button>Create Film Entry</button></pre>
-	</form>
+	<form action="editFilm.do" method="POST">
+    <table width="700px">
+        <tr>
+            <td width="30%">Edit Title:</td>
+            <td><input type="text" id="title" name="title" size="50" value="${film.title}"></td>
+        </tr>
+        <tr>
+            <td width="30%">Edit Description:</td>
+            <td><input type="text" id="description" name="description" size="50" value="${film.description}"></td>
+        </tr>
+        <tr>
+            <td width="30%">Edit Release Year:</td>
+            <td><input type="text" id="releaseYear" name="releaseYear" size="50" value="${film.releaseYear}"></td>
+        </tr>
+        <tr>
+            <td width="30%">Edit Language:</td>
+            <td><input type="text" id="languageId" name="languageId" size="50" value="${film.languageId}"></td>
+        </tr>
+        <tr>
+            <td width="30%">Edit Rental Duration:</td>
+            <td><input type="text" id="rentalDuration" name="rentalDuration" size="50" value="${film.rentalDuration}"></td>
+        </tr>
+        <tr>
+            <td width="30%">Edit Rental Rate:</td>
+            <td><input type="text" id="rentalRate" name="rentalRate" size="50" value="${film.rentalRate}"></td>
+        </tr>
+        <tr>
+            <td width="30%">Edit Running Time:</td>
+            <td><input type="text" id="length" name="length" size="50" value="${film.length}"></td>
+        </tr>
+        <tr>
+            <td width="30%">Edit Replacement Cost:</td>
+            <td><input type="text" id="replacementCost" name="replacementCost" size="50" value="${film.replacementCost}"></td>
+        </tr>
+        <tr>
+            <td width="30%">Edit Rating:</td>
+            <td><input type="text" id="rating" name="rating" size="50" value="${film.rating}"></td>
+        </tr>
+        <tr>
+            <td width="30%">Edit Special Features:</td>
+            <td><input type="text" id="specialFeatures" name="specialFeatures" size="50" value="${film.specialFeatures}"></td>
+        </tr>
+    </table>
+    <div align="center">
+        <input type="hidden" name="filmId" value="${film.id}">
+        <button>Edit Film Data</button>
+    </div>
+</form>
+
 </body>
 </html>
