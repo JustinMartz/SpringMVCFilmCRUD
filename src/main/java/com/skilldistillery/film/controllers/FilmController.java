@@ -52,6 +52,7 @@ public class FilmController {
 			@RequestParam("rentalRate") double rentalRate, @RequestParam("length") int length,
 			@RequestParam("replacementCost") double replacementCost, String rating, String specialFeatures) {
 		ModelAndView mv = new ModelAndView("WEB-INF/viewFilm.jsp");
+		
 		Film film = new Film();
 		film.setTitle(title);
 		film.setDescription(description);
@@ -128,7 +129,7 @@ public class FilmController {
 
 		}
 
-		model.addAttribute("headline", "Catastrophic Failure!");
+		model.addAttribute("headline", "Failure!");
 		model.addAttribute("message", "Film unable to be updated. Who do you think you are?");
 		return "displayMessage.jsp";
 		
