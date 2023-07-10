@@ -136,10 +136,17 @@ public class FilmController {
 	
 	@RequestMapping(path = "showFilm.do", method = RequestMethod.POST, params="keyword")
 	public ModelAndView keywordSearch(String keyword) {
-		 
+		ModelAndView mv = new ModelAndView();
 		List<Film> listOfReturnedFilms;
 		listOfReturnedFilms = filmDAO.keywordSearch(keyword);
-		ModelAndView mv = new ModelAndView("WEB-INF/viewFilm.jsp");
+		
+		if (listOfReturnedFilms == null) {
+			mv.setViewName("WEB-INF/error.jsp");
+			mv.addObject("keyword_error", keyword + " not found in database.");
+			return mv;
+		}
+		
+		mv.setViewName("WEB-INF/viewFilm.jsp");
 		mv.addObject("list", listOfReturnedFilms);
 		
 		return mv;
